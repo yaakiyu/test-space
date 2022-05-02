@@ -47,8 +47,6 @@ numpy
 opencv-contrib-python
 openpyxl
 orjson
-pickle
-pillow
 proxy-tools
 psutil
 pycparser
