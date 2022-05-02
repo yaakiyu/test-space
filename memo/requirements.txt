@@ -24,7 +24,7 @@ cffi
 chardet
 cleantext
 clr-loader
-dateutil
+python-dateutil
 deep-translator
 dislash.py
 drawdata
