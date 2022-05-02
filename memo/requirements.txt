@@ -37,7 +37,7 @@ hpack
 hstspreload
 httpcore
 hyperframe
-iclawler
+icrawler
 idna
 jishaku
 matplotlib
