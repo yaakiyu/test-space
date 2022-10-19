@@ -193,7 +193,6 @@ f{flags[4]}">{splitted}</b>{line[len(splitted):]}'
         new_source[count] += "<br>"
 
 
-
 source = "\n".join(source.splitlines()[:17] + new_source)
 
 with open("memo/wikisource.txt", encoding="utf-8", mode="w") as f:
