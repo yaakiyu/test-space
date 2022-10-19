@@ -1,11 +1,9 @@
 # wikisource形式変換システム
 
-import re
 from kanjize import kanji2int
-from datetime import date
 
 
-with open("wikisource.txt") as f:
+with open("memo/wikisource.txt", encoding="utf-8") as f:
     # 法律原文を読み込み
     source = f.read()
 
@@ -179,17 +177,17 @@ for count, line in enumerate(new_source):
         if new_source[count - 1].startswith("（") and new_source[count - 1].endswith("）"):
             # 条の前の説明がある場合。
             new_source[count - 1
-                ] = f'\n<span id="{flags[6] if flags[6] != 1 else ""}f{flags[4]}"> \
-                    {new_source[count - 1]}</span><br>'
+                ] = f'\n<span id="{flags[6] if flags[6] != 1 else ""}f{flags[4]}">\
+{new_source[count - 1]}</span><br>'
             new_source[count] = f"'''{splitted}'''{line[len(splitted):]}"
         else:
             new_source[count
-                ] = f'\n<b id="{flags[6] if flags[6] != 1 else ""} \
-                    f{flags[4]}">{splitted}</b>{line[len(splitted):]}'
+                ] = f'\n<b id="{flags[6] if flags[6] != 1 else ""}\
+f{flags[4]}">{splitted}</b>{line[len(splitted):]}'
 
 
 
 source = "\n".join(source.splitlines()[:17] + new_source)
 
-with open("wikisource.txt") as f:
+with open("memo/wikisource.txt", encoding="utf-8", mode="w") as f:
     f.write(source)
