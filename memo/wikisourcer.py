@@ -125,24 +125,29 @@ for count, line in enumerate(new_source):
     if line == "目次" and not flags[0]:
         flags[0] = True
         new_source[count] = "\n== 目次 =="
+        continue
     if line == "" and flags[0] and not flags[1]:
         # 目次終了
         flags[1] = True
+        continue
     if flags[0] and not flags[1]:
         # 目次の途中
         new_source[count] = f"[[#{line.split('（')[0]}|{line}]]"
+        continue
     
     splitted = line.split("　")[0]
 
     if flags[1] and not flags[5] and line.startswith("第") and splitted.endswith("章"):
         # 章の開始
         flags[2] = kanji2int(splitted[1:-1])
-        new_source[count] = f"== {line} =="
+        new_source[count] = f"\n== {line} =="
+        continue
 
     if flags[1] and not flags[5] and line.startswith("第") and splitted.endswith("節"):
         # 節の開始
         flags[3] = kanji2int(splitted[1:-1])
-        new_source[count] = f"=== {line} ==="
+        new_source[count] = f"\n=== {line} ==="
+        continue
 
     if flags[1] and not flags[5] and line.startswith("第") and splitted.endswith('条'):
         # 条の開始
@@ -154,11 +159,37 @@ for count, line in enumerate(new_source):
             new_source[count] = f"'''{splitted}'''{line[len(splitted):]}"
         else:
             new_source[count] = f'\n<b id="a{flags[4]}">{splitted}</b>{line[len(splitted):]}'
+        continue
 
     if flags[1] and not flags[5] and line == "附　則　抄":
         # 附則スタート
         flags[5] = True
+        flags[6] = 1
+        new_source[count] = f"\n== {line} =="
+        continue
+
+    if flags[5] and line.startswith("附　則　（"):
+        # 新たな附則
+        flags[6] += 1
+        new_source[count] = f"\n=== {line} ==="
+
+    if flags[5] and line.startswith("第") and splitted.endswith('条'):
+        # 附則内の条開始
+        flags[4] = kanji2int(splitted[1:-1])
+        if new_source[count - 1].startswith("（") and new_source[count - 1].endswith("）"):
+            # 条の前の説明がある場合。
+            new_source[count - 1
+                ] = f'\n<span id="{flags[6] if flags[6] != 1 else ""}f{flags[4]}"> \
+                    {new_source[count - 1]}</span><br>'
+            new_source[count] = f"'''{splitted}'''{line[len(splitted):]}"
+        else:
+            new_source[count
+                ] = f'\n<b id="{flags[6] if flags[6] != 1 else ""} \
+                    f{flags[4]}">{splitted}</b>{line[len(splitted):]}'
 
 
 
 source = "\n".join(source.splitlines()[:17] + new_source)
+
+with open("wikisource.txt") as f:
+    f.write(source)
