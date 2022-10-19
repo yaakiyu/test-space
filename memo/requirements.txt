@@ -107,3 +107,4 @@ urllib3
 Werkzeug
 youtube-dl
 tensorflow
+kanjize
