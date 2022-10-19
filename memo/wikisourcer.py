@@ -124,11 +124,11 @@ for count, line in enumerate(new_source):
         flags[0] = True
         new_source[count] = "\n== 目次 =="
         continue
-    if line == "" and flags[0] and not flags[1]:
+    elif line == "" and flags[0] and not flags[1]:
         # 目次終了
         flags[1] = True
         continue
-    if flags[0] and not flags[1]:
+    elif flags[0] and not flags[1]:
         # 目次の途中
         new_source[count] = f"[[#{line.split('（')[0]}|{line}]]"
         continue
@@ -141,13 +141,13 @@ for count, line in enumerate(new_source):
         new_source[count] = f"\n== {line} =="
         continue
 
-    if flags[1] and not flags[5] and line.startswith("第") and splitted.endswith("節"):
+    elif flags[1] and not flags[5] and line.startswith("第") and splitted.endswith("節"):
         # 節の開始
         flags[3] = kanji2int(splitted[1:-1])
         new_source[count] = f"\n=== {line} ==="
         continue
 
-    if flags[1] and not flags[5] and line.startswith("第") and splitted.endswith('条'):
+    elif flags[1] and not flags[5] and line.startswith("第") and splitted.endswith('条'):
         # 条の開始
         flags[4] = kanji2int(splitted[1:-1])
         if new_source[count - 1].startswith("（") and new_source[count - 1].endswith("）"):
@@ -159,19 +159,19 @@ for count, line in enumerate(new_source):
             new_source[count] = f'\n<b id="a{flags[4]}">{splitted}</b>{line[len(splitted):]}'
         continue
 
-    if flags[1] and not flags[5] and line == "附　則　抄":
+    elif flags[1] and not flags[5] and line == "附　則　抄":
         # 附則スタート
         flags[5] = True
         flags[6] = 1
         new_source[count] = f"\n== {line} =="
         continue
 
-    if flags[5] and line.startswith("附　則　（"):
+    elif flags[5] and line.startswith("附　則　（"):
         # 新たな附則
         flags[6] += 1
         new_source[count] = f"\n=== {line} ==="
 
-    if flags[5] and line.startswith("第") and splitted.endswith('条'):
+    elif flags[5] and line.startswith("第") and splitted.endswith('条'):
         # 附則内の条開始
         flags[4] = kanji2int(splitted[1:-1])
         if new_source[count - 1].startswith("（") and new_source[count - 1].endswith("）"):
@@ -184,6 +184,13 @@ for count, line in enumerate(new_source):
             new_source[count
                 ] = f'\n<b id="{flags[6] if flags[6] != 1 else ""}\
 f{flags[4]}">{splitted}</b>{line[len(splitted):]}'
+
+    elif line == "":
+        continue
+    
+    else:
+        # 何の変哲もない行。
+        new_source[count] += "<br>"
 
 
 
