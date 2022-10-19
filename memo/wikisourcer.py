@@ -117,7 +117,7 @@ flags = [
     0,  # 附則カウント
 ]
 
-new_source = source.splitlines()[17:]
+new_source = source.splitlines()[16:]
 
 for count, line in enumerate(new_source):
     if line == "目次" and not flags[0]:
@@ -132,7 +132,7 @@ for count, line in enumerate(new_source):
         # 目次の途中
         new_source[count] = f"[[#{line.split('（')[0]}|{line}]]"
         continue
-    
+
     splitted = line.split("　")[0]
 
     if flags[1] and not flags[5] and line.startswith("第") and splitted.endswith("章"):
@@ -193,7 +193,7 @@ f{flags[4]}">{splitted}</b>{line[len(splitted):]}'
         new_source[count] += "<br>"
 
 
-source = "\n".join(source.splitlines()[:17] + new_source)
+source = "\n".join(source.splitlines()[:16] + new_source)
 
 with open("memo/wikisource.txt", encoding="utf-8", mode="w") as f:
     f.write(source)
