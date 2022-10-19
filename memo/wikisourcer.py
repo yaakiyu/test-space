@@ -10,7 +10,7 @@ with open("wikisource.txt") as f:
 starting_member = """{{header
  | title = {{PAGENAME}}
  | year = 
- | defaultsort = すいどうほう
+ | defaultsort = 
  | notes = 
 < [[Wikisource:日本の法律]]
 
@@ -18,7 +18,16 @@ starting_member = """{{header
 *
 *公布:
 [[カテゴリ:の法律|]]
-}}"""
+}}""".splitlines()
+
+x = input("法令成立年(西暦)?")
+starting_member[2] += x
+starting_member[10] = "[[カテゴリ:の法律|]]"
+x2 = input("法令名(ひらがな)?")
+starting_member[3] += x2
+starting_member[7] = f"'''''' ('''{x2}''')"
+
+
 
 flags = [
     False,  # 目次始まったかどうか
