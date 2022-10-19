@@ -124,11 +124,11 @@ for count, line in enumerate(new_source):
         flags[0] = True
         new_source[count] = "\n== 目次 =="
         continue
-    elif line == "" and flags[0] and not flags[1]:
+    if line == "" and flags[0] and not flags[1]:
         # 目次終了
         flags[1] = True
         continue
-    elif flags[0] and not flags[1]:
+    if flags[0] and not flags[1]:
         # 目次の途中
         new_source[count] = f"[[#{line.split('（')[0]}|{line}]]"
         continue
