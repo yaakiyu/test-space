@@ -28,9 +28,9 @@ x3 = int(input("法令成立日?"))
 _date_objobj = f"{x}-{x2}-{x3}"
 
 def year_converter_to_wareki(date_obj):
-    start_of_taisyo = date(1912, 7, 30) 
-    start_of_syowa = date(1926, 12, 25) 
-    start_of_heisei = date(1989, 1, 8) 
+    start_of_taisyo = date(1912, 7, 30)
+    start_of_syowa = date(1926, 12, 25)
+    start_of_heisei = date(1989, 1, 8)
     start_of_reiwa = date(2019,5,1)
     year, month, day = None, None, None
 
@@ -115,6 +115,7 @@ flags = [
     0,  # 条
     False,  # 附則に入ったかどうか
     0,  # 附則カウント
+    [],  # インデントレベル
 ]
 
 new_source = source.splitlines()[16:]
@@ -130,7 +131,11 @@ for count, line in enumerate(new_source):
         continue
     if flags[0] and not flags[1]:
         # 目次の途中
-        new_source[count] = f"[[#{line.split('（')[0]}|{line}]]"
+        line = line.replace("―", " - ")
+        if line.split("　")[0].endswith("節"):
+            new_source[count] = f"::[[#{line.split('（')[0]}|{line}]]"
+        else:
+            new_source[count] = f":[[#{line.split('（')[0]}|{line}]]"
         continue
 
     splitted = line.split("　")[0]
@@ -157,6 +162,21 @@ for count, line in enumerate(new_source):
             new_source[count] = f"'''{splitted}'''{line[len(splitted):]}"
         else:
             new_source[count] = f'\n<b id="a{flags[4]}">{splitted}</b>{line[len(splitted):]}'
+        flags[7] = []  # インデントレベルのリセット
+        continue
+
+    elif flags[1] and not flags[5] and line.startswith("第") and line.split("の")[0].endswith('条'):
+        # 条の開始(細かい)
+        _komakai = kanji2int(line.split("の")[1].split("　")[0])
+        flags[4] = kanji2int(line.split("の")[0][1:-1])
+        if new_source[count - 1].startswith("（") and new_source[count - 1].endswith("）"):
+            # 条の前の説明がある場合。
+            new_source[count - 1
+                ] = f'\n<span id="a{flags[4]}_{_komakai}">{new_source[count - 1]}</span><br>'
+            new_source[count] = f"'''{splitted}'''{line[len(splitted):]}"
+        else:
+            new_source[count] = f'\n<b id="a{flags[4]}_{_komakai}">{splitted}</b>{line[len(splitted):]}'
+        flags[7] = []  # インデントレベルのリセット
         continue
 
     elif flags[1] and not flags[5] and line == "附　則　抄":
@@ -169,6 +189,7 @@ for count, line in enumerate(new_source):
     elif flags[5] and line.startswith("附　則　（"):
         # 新たな附則
         flags[6] += 1
+        flags[7] = []
         new_source[count] = f"\n=== {line} ==="
 
     elif flags[5] and line.startswith("第") and splitted.endswith('条'):
@@ -184,13 +205,19 @@ for count, line in enumerate(new_source):
             new_source[count
                 ] = f'\n<b id="{flags[6] if flags[6] != 1 else ""}\
 f{flags[4]}">{splitted}</b>{line[len(splitted):]}'
+        flags[7] = []
 
-    elif line == "":
-        continue
-    
-    else:
-        # 何の変哲もない行。
-        new_source[count] += "<br>"
+    elif line.startswith(("１", "２", "３", "４", "５", "６", "７", "８", "９")):
+        if "数字" not in flags[7]:
+            flags[7].append("数字")
+        new_source[count] = f"{':' * (flags[7].index('数字') + 1)}\
+{int(line.split('　')[0])}　{''.join(line.split('　')[1:])}"
+
+    elif line.startswith(("一", "二", "三", "四", "五", "六", "七", "八", "九", "十")):
+        if "漢数字" not in flags[7]:
+            flags[7].append("漢数字")
+        new_source[count] = f"{':' * (flags[7].index('漢数字') + 1)}{line}"
+
 
 
 source = "\n".join(source.splitlines()[:16] + new_source)
