@@ -108,8 +108,8 @@ starting_member[7] = f"'''''' ('''{x4}''')"
 """
 
 flags = [
-    False,  # 目次始まったかどうか
-    False,  # 目次終わったかどうか
+    True,  # 目次始まったかどうか
+    True,  # 目次終わったかどうか
     0,  # 章
     0,  # 節
     0,  # 条
@@ -118,7 +118,7 @@ flags = [
     [],  # インデントレベル
 ]
 
-new_source = source.splitlines()[16:]
+new_source = source.splitlines()[19:]
 
 for count, line in enumerate(new_source):
     if line == "目次" and not flags[0]:
@@ -220,7 +220,7 @@ f{flags[4]}">{splitted}</b>{line[len(splitted):]}'
 
 
 
-source = "\n".join(source.splitlines()[:16] + new_source)
+source = "\n".join(source.splitlines()[:19] + new_source)
 
 with open("memo/wikisource.txt", encoding="utf-8", mode="w") as f:
     f.write(source)
