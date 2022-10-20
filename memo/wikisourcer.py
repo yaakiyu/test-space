@@ -115,7 +115,6 @@ flags = [
     0,  # 条
     False,  # 附則に入ったかどうか
     0,  # 附則カウント
-    [],  # インデントレベル
 ]
 
 new_source = source.splitlines()[19:]
@@ -162,21 +161,19 @@ for count, line in enumerate(new_source):
             new_source[count] = f"'''{splitted}'''{line[len(splitted):]}"
         else:
             new_source[count] = f'\n<b id="a{flags[4]}">{splitted}</b>{line[len(splitted):]}'
-        flags[7] = []  # インデントレベルのリセット
         continue
 
     elif flags[1] and not flags[5] and line.startswith("第") and line.split("の")[0].endswith('条'):
-        # 条の開始(細かい)
+        # 条の枝の開始
         _komakai = kanji2int(line.split("の")[1].split("　")[0])
         flags[4] = kanji2int(line.split("の")[0][1:-1])
         if new_source[count - 1].startswith("（") and new_source[count - 1].endswith("）"):
             # 条の前の説明がある場合。
             new_source[count - 1
-                ] = f'\n<span id="a{flags[4]}_{_komakai}">{new_source[count - 1]}</span><br>'
+                ] = f'\n<span id="a{flags[4]}.{_komakai}">{new_source[count - 1]}</span><br>'
             new_source[count] = f"'''{splitted}'''{line[len(splitted):]}"
         else:
-            new_source[count] = f'\n<b id="a{flags[4]}_{_komakai}">{splitted}</b>{line[len(splitted):]}'
-        flags[7] = []  # インデントレベルのリセット
+            new_source[count] = f'\n<b id="a{flags[4]}.{_komakai}">{splitted}</b>{line[len(splitted):]}'
         continue
 
     elif flags[1] and not flags[5] and line == "附　則　抄":
@@ -189,7 +186,6 @@ for count, line in enumerate(new_source):
     elif flags[5] and line.startswith("附　則　（"):
         # 新たな附則
         flags[6] += 1
-        flags[7] = []
         new_source[count] = f"\n=== {line} ==="
 
     elif flags[5] and line.startswith("第") and splitted.endswith('条'):
@@ -205,20 +201,25 @@ for count, line in enumerate(new_source):
             new_source[count
                 ] = f'\n<b id="{flags[6] if flags[6] != 1 else ""}\
 f{flags[4]}">{splitted}</b>{line[len(splitted):]}'
-        flags[7] = []
 
     elif line.startswith(("１", "２", "３", "４", "５", "６", "７", "８", "９")):
-        if "数字" not in flags[7]:
-            flags[7].append("数字")
-        new_source[count] = f"{':' * (flags[7].index('数字') + 1)}\
-{int(line.split('　')[0])}　{''.join(line.split('　')[1:])}"
+        # 項の開始
+        new_source[count] = f':<span id="a{flags[4]}_{int(splitted[0])}">\
+{int(splitted[0])}</span>　{"".join(line.split("　")[1:])}'
 
     elif line.startswith(("一", "二", "三", "四", "五", "六", "七", "八", "九", "十")):
-        if "漢数字" not in flags[7]:
-            flags[7].append("漢数字")
-        new_source[count] = f"{':' * (flags[7].index('漢数字') + 1)}{line}"
+        # 選択肢みたいなのの開始
+        new_source[count] = f"::{line}"
+    
+    elif line.startswith((
+        "イ　", "ロ　", "ハ　", "ニ　", "ホ　", "ヘ　", "ト　", "チ　", "リ　",
+        "ヌ　", "ル　", "ヲ　", "ワ　", "カ　", "ヨ　", "タ　", "レ　", "ソ",
+    )):
+        # イロハ開始
+        new_source[count] = f":::{line}"
 
 
+new_source.append("{{PD-JapanGov}}")
 
 source = "\n".join(source.splitlines()[:19] + new_source)
 
