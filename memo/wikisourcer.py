@@ -186,7 +186,7 @@ for count, line in enumerate(new_source):
     elif flags[5] and line.startswith("附　則　（"):
         # 新たな附則
         flags[6] += 1
-        flags[4] = 0
+        flags[4] = ""
         new_source[count] = f"\n=== {line} ==="
 
     elif flags[5] and line.startswith("第") and splitted.endswith('条'):
