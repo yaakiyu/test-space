@@ -207,7 +207,7 @@ f{flags[4]}">{splitted}</b>{line[len(splitted):]}'
         # 項の開始
         if flags[5]:
             new_source[count] = f':<span id="{flags[6]}f{flags[4]}_{int(splitted[0])}">\
-{int(splitted[0])}</spam>　{"".join(line.split("　")[1:])}'
+{int(splitted[0])}</span>　{"".join(line.split("　")[1:])}'
         else:
             new_source[count] = f':<span id="a{flags[4]}_{int(splitted[0])}">\
 {int(splitted[0])}</span>　{"".join(line.split("　")[1:])}'
