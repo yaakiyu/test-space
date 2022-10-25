@@ -186,6 +186,7 @@ for count, line in enumerate(new_source):
     elif flags[5] and line.startswith("附　則　（"):
         # 新たな附則
         flags[6] += 1
+        flags[4] = 0
         new_source[count] = f"\n=== {line} ==="
 
     elif flags[5] and line.startswith("第") and splitted.endswith('条'):
@@ -204,7 +205,11 @@ f{flags[4]}">{splitted}</b>{line[len(splitted):]}'
 
     elif line.startswith(("１", "２", "３", "４", "５", "６", "７", "８", "９")):
         # 項の開始
-        new_source[count] = f':<span id="a{flags[4]}_{int(splitted[0])}">\
+        if flags[5]:
+            new_source[count] = f':<span id="{flags[6]}f{flags[4]}_{int(splitted[0])}">\
+{int(splitted[0])}</spam>　{"".join(line.split("　")[1:])}'
+        else:
+            new_source[count] = f':<span id="a{flags[4]}_{int(splitted[0])}">\
 {int(splitted[0])}</span>　{"".join(line.split("　")[1:])}'
 
     elif line.startswith(("一", "二", "三", "四", "五", "六", "七", "八", "九", "十")):
