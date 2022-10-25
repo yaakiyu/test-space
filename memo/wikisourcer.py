@@ -108,8 +108,8 @@ starting_member[7] = f"'''''' ('''{x4}''')"
 """
 
 flags = [
-    True,  # 目次始まったかどうか
-    True,  # 目次終わったかどうか
+    False,  # 目次始まったかどうか
+    False,  # 目次終わったかどうか
     0,  # 章
     0,  # 節
     0,  # 条
@@ -176,7 +176,7 @@ for count, line in enumerate(new_source):
             new_source[count] = f'\n<b id="a{flags[4]}.{_komakai}">{splitted}</b>{line[len(splitted):]}'
         continue
 
-    elif flags[1] and not flags[5] and line == "附　則　抄":
+    elif flags[1] and not flags[5] and line.startswith("附　則"):
         # 附則スタート
         flags[5] = True
         flags[6] = 1
