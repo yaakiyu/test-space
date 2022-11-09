@@ -9,10 +9,10 @@ new_source = data.splitlines()
 for count, line in enumerate(new_source):
     if (
         line.startswith("||") and new_source[count - 2].startswith("!|")
-        and not line.startswith(
+        and new_source[count - 1].startswith(
             ("||明治", "||大正", "||昭和", "||平成", "||令和")
         ) and new_source[count - 3] == "|-" and "[[" not in line
-        and count > 2000
+        and count > 2000 and line != "||"
     ):
         new_source[count] = f"||[[{line[2:]}]]"
 
