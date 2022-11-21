@@ -225,6 +225,7 @@ f{flags[4]}">{splitted}</b>{line[len(splitted):]}'
 
 
 new_source.append("{{PD-JapanGov}}")
+new_source.append("")
 
 source = "\n".join(source.splitlines()[:19] + new_source)
 
