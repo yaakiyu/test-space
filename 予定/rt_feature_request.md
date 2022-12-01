@@ -29,19 +29,23 @@
 * 統計を残すために、チャンネル名ではなくサーバーの統計データをテキストチャンネルに送信する機能を追加
 * `上の統計情報のカスタム及びEmbedBuilderの利用`
 ### ロールメッセージ ([issue](https://github.com/RextTeam/rt-bot/issues/224))
-* `ログ機能の一部にして、有料版専用の機能にする`
+* `ログ機能の一部にして、有料版専用の機能にする`  
 ↑この機能に関してはそんなに使用頻度高くないし有料版専用でもいいんじゃないかな...
 ### スレッドでメンバーの追加・削除 ([issue](https://github.com/RextTeam/rt-bot/issues/225))
 * API制限がかかりやすいため1回5人までにしてクールダウンをつける
 * `有料版は1回10人まで(クールダウンは同じ)`
 ### グローバルチャット ([issue](https://github.com/RextTeam/rt-bot/issues/226))
-* (Bot管理者が全サーバーから投稿を一括で削除できる)
+* (Bot管理者が全サーバーから投稿を一括で削除できるように)
 ### 即抜けBAN ([issue](https://github.com/RextTeam/rt-bot/issues/227))
 * 「即抜けKick」、「即抜け→入室でタイムアウト」などのオプションをつける
 * `「即抜け→TempBAN」`
 ### ボイスロール ([issue](https://github.com/RextTeam/rt-bot/issues/228))
 * `スレッド参加時にロールを付与・削除する機能`
-
+### タグメッセージ ([issue](https://github.com/RextTeam/rt-bot/issues/229))
+* タグがついてなくてもコマンドで手動で呼び出せるようにする
+* `EmbedBuilderの対応`
+### メッセージ削除禁止 ([issue](https://github.com/RextTeam/rt-bot/issues/230))
+* `例外ロールの指定`
 
 # 「特になし」の一覧
 * kickコマンド ([issue](https://github.com/RextTeam/rt-bot/issues/218))
