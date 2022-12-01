@@ -14,10 +14,16 @@
 * `期間限定パネル(RT公式サーバーでいうところの1000サーバー記念ロールみたいな)の作成`
 ### スレッド管理 ([issue](https://github.com/RextTeam/rt-bot/issues/215))
 * `スレッド管理対象外にするためのタグを指定できるようにする`
-### dissokuのup通知 ([issue](https://github.com/RextTeam/rt-bot/issues/216))
+### up通知 ([issue](https://github.com/RextTeam/rt-bot/issues/216)), bump通知 ([issue](https://github.com/RextTeam/rt-bot/issues/220))
 * 通知チャンネルを固定する(別のチャンネルでupされても、設定してあったチャンネルに通知を送信する)
 * ダッシュボードで現在の残り時間を表示する
-
+### 絵文字・スタンプのブロック ([issue](https://github.com/RextTeam/rt-bot/issues/217))
+* `「指定した数以上の絵文字を1度に送信」でブロックするようにする機能を追加`
+### kick・BANコマンド ([issue](https://github.com/RextTeam/rt-bot/issues/218))
+特になし。
+### ニックネームパネル ([issue](https://github.com/RextTeam/rt-bot/issues/219))
+* ランダムに変える楽しいモード
+* `ランダムに変える中身を指定することができる`
 ### Captcha
 ### Role_keeper
 * キープデータの削除
