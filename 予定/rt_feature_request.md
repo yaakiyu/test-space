@@ -1,6 +1,7 @@
 # RT機能提案
 
-ほぼ全機能に対し提案を行う。
+ほぼ全機能に対し提案を行う。  
+一部、特に提案がないものもある。  
 (作成中、進捗...25%)
 
 なお、各機能の提案の中で`こんな感じ`になってるやつは有料版専用の提案
@@ -35,14 +36,12 @@
 * `有料版は1回10人まで(クールダウンは同じ)`
 ### グローバルチャット ([issue](https://github.com/RextTeam/rt-bot/issues/226))
 * (Bot管理者が全サーバーから投稿を一括で削除できる)
-### 即抜けBAN ([issue](https://github.com/RextTeam/rt-bot/issues/223))
+### 即抜けBAN ([issue](https://github.com/RextTeam/rt-bot/issues/227))
 * 「即抜けKick」、「即抜け→入室でタイムアウト」などのオプションをつける
 * `「即抜け→TempBAN」`
-### ボイスロール ([issue](https://github.com/RextTeam/rt-bot/issues/223))
+### ボイスロール ([issue](https://github.com/RextTeam/rt-bot/issues/228))
 * `スレッド参加時にロールを付与・削除する機能`
-### Captcha
-### Role_keeper
-* キープデータの削除
+
 
 # 「特になし」の一覧
 * kickコマンド ([issue](https://github.com/RextTeam/rt-bot/issues/218))
