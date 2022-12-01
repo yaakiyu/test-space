@@ -1,7 +1,7 @@
 # RT機能提案
 
-全機能に対し提案を行う。
-(作成中、進捗...10%)
+ほぼ全機能に対し提案を行う。
+(作成中、進捗...25%)
 
 なお、各機能の提案の中で`こんな感じ`になってるやつは有料版専用の提案
 
@@ -19,12 +19,31 @@
 * ダッシュボードで現在の残り時間を表示する
 ### 絵文字・スタンプのブロック ([issue](https://github.com/RextTeam/rt-bot/issues/217))
 * `「指定した数以上の絵文字を1度に送信」でブロックするようにする機能を追加`
-### kick・BANコマンド ([issue](https://github.com/RextTeam/rt-bot/issues/218))
-特になし。
 ### ニックネームパネル ([issue](https://github.com/RextTeam/rt-bot/issues/219))
 * ランダムに変える楽しいモード
 * `ランダムに変える中身を指定することができる`
+### welcomeロール ([issue](https://github.com/RextTeam/rt-bot/issues/221))
+* `botとユーザーで付与するロールを分ける`
+### チャンネルステータス ([issue](https://github.com/RextTeam/rt-bot/issues/222))
+* 統計を残すために、チャンネル名ではなくサーバーの統計データをテキストチャンネルに送信する機能を追加
+* `上の統計情報のカスタム及びEmbedBuilderの利用`
+### ロールメッセージ ([issue](https://github.com/RextTeam/rt-bot/issues/224))
+* `ログ機能の一部にして、有料版専用の機能にする`
+↑この機能に関してはそんなに使用頻度高くないし有料版専用でもいいんじゃないかな...
+### スレッドでメンバーの追加・削除 ([issue](https://github.com/RextTeam/rt-bot/issues/225))
+* API制限がかかりやすいため1回5人までにしてクールダウンをつける
+* `有料版は1回10人まで(クールダウンは同じ)`
+### グローバルチャット ([issue](https://github.com/RextTeam/rt-bot/issues/226))
+* (Bot管理者が全サーバーから投稿を一括で削除できる)
+### 即抜けBAN ([issue](https://github.com/RextTeam/rt-bot/issues/223))
+* 「即抜けKick」、「即抜け→入室でタイムアウト」などのオプションをつける
+* `「即抜け→TempBAN」`
+### ボイスロール ([issue](https://github.com/RextTeam/rt-bot/issues/223))
+* `スレッド参加時にロールを付与・削除する機能`
 ### Captcha
 ### Role_keeper
 * キープデータの削除
-### ...
+
+# 「特になし」の一覧
+* kickコマンド ([issue](https://github.com/RextTeam/rt-bot/issues/218))
+* スローモード ([issue](https://github.com/RextTeam/rt-bot/issues/223))
