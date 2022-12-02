@@ -46,9 +46,13 @@
 * `EmbedBuilderの対応`
 ### メッセージ削除禁止 ([issue](https://github.com/RextTeam/rt-bot/issues/230))
 * `例外ロールの指定`
-### AutoSpoiler ([issue](https://github.com/RextTeam/rt-bot/issues/231))
-
+### アイコン未設定警告 ([issue](https://github.com/RextTeam/rt-bot/issues/232))
+* サーバーに「未設定者が入ってきたよ」というメッセージを送る
+* `未設定者にのみcaptchaをさせ、設定済みの人には自動でロールをつける`
+### 入退出メッセージ
 
 # 「特になし」の一覧
 * kickコマンド ([issue](https://github.com/RextTeam/rt-bot/issues/218))
 * スローモード ([issue](https://github.com/RextTeam/rt-bot/issues/223))
+* AutoSpoiler ([issue](https://github.com/RextTeam/rt-bot/issues/231))
+* メッセージリンク展開 ([issue](https://github.com/RextTeam/rt-bot/issues/233))
