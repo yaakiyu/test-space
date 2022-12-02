@@ -2,7 +2,7 @@
 
 ほぼ全機能に対し提案を行う。  
 一部、特に提案がないものもある。  
-(作成中、進捗...25%)
+(作成中、進捗...50%)
 
 なお、各機能の提案の中で`こんな感じ`になってるやつは有料版専用の提案
 
@@ -46,6 +46,8 @@
 * `EmbedBuilderの対応`
 ### メッセージ削除禁止 ([issue](https://github.com/RextTeam/rt-bot/issues/230))
 * `例外ロールの指定`
+### AutoSpoiler ([issue](https://github.com/RextTeam/rt-bot/issues/231))
+
 
 # 「特になし」の一覧
 * kickコマンド ([issue](https://github.com/RextTeam/rt-bot/issues/218))
