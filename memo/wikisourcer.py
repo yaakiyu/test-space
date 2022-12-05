@@ -21,68 +21,56 @@ starting_member = """{{header
 }}""".splitlines()
 
 """
-x = input("法令成立年(西暦)?")
-starting_member[2] += x
-x2 = int(input("法令成立月?"))
-x3 = int(input("法令成立日?"))
-_date_objobj = f"{x}-{x2}-{x3}"
+made_year = 2000  # 法令成立年(西暦)
+starting_member[2] += made_year
+made_month = 1  # 法令成立月
+made_day = 1  # 法令成立日
+_date_string = f"{made_year}-{made_month}-{made_day}"
 
 def year_converter_to_wareki(date_obj):
-    start_of_taisyo = date(1912, 7, 30)
-    start_of_syowa = date(1926, 12, 25)
-    start_of_heisei = date(1989, 1, 8)
-    start_of_reiwa = date(2019,5,1)
+    gengo_data = {
+        date(2019, 05, 01): {"name": "令和"},
+        date(1989, 01, 08): {"name": "平成"},
+        date(1926, 12, 25): {"name": "昭和"},
+        date(1912, 07, 30): {"name": "大正"},
+        date(1868, 01, 25): {"name": "明治"},
+    }
+
     year, month, day = None, None, None
 
     #-で分けてリスト化
     obj_list = date_obj.split("-")
-    #2桁や1桁のときは19**にする
+    #2桁や1桁のときは20**または19**にする
     if len(obj_list[0]) == 1:
-        obj_list[0] = "190" + obj_list[0]
+        obj_list[0] = "200" + obj_list[0]
     elif len(obj_list[0]) == 2:
-        obj_list[0] = "19" + obj_list[0]
+        obj_list[0] = ("19" if int(obj_list[0]) > 25 else "20") + obj_list[0]
 
     #年のみの入力は1月1日となる
     if len(obj_list) == 1:
         year = int(obj_list[0])
-        input_obj = date(year, 1, 1)
     #年月の場合は1日となる
     elif len(obj_list) == 2:
         year, month = tuple(obj_list)
         year, month = int(year), int(month)
-        input_obj = date(year, month, 1)
     elif len(obj_list) == 3:
         year, month, day = tuple(obj_list)
         year, month, day = int(year), int(month), int(day)
-        input_obj = date(year, month, day)
+    input_obj = date(year, month or 1, day or 1)
 
     #出てきた年を格納する
     result_year = ""
 
     #年を格納
-    if input_obj >=start_of_reiwa:
-        nen = input_obj.year - start_of_reiwa.year + 1
-        if nen == 1:
-            nen = "元"
-        result_year =  f"令和{nen}年"
-    elif input_obj >= start_of_heisei:
-        nen = input_obj.year - start_of_heisei.year + 1
-        if nen == 1:
-            nen = "元"
-        result_year =  f"平成{nen}年"
-    elif input_obj >= start_of_syowa:
-        nen = input_obj.year - start_of_syowa.year + 1
-        if nen == 1:
-            nen = "元"
-        result_year =  f"昭和{nen}年"
-    elif input_obj >= start_of_taisyo:
-        nen = input_obj.year - start_of_taisyo.year + 1
-        if nen == 1:
-            nen = "元"
-        result_year =  f"大正{nen}年"
-    #大正よりも前の場合
+    for key, value in gengo_data.items():
+        if input_obj >= key:
+            nen: int | str = input_obj.year - key.year + 1
+            if nen == 1:
+                nen = "元"
+            result_year = f"{value['name']}{nen}年"
+            break
     else:
-        return "昔過ぎて計算できません（大正以前）"
+        raise KeyError("古すぎて計算できませんでした。")
 
     #output（年月日を合算）
     result = ""
@@ -99,7 +87,7 @@ def year_converter_to_wareki(date_obj):
             result = f"{result_year}{month}月{day}日"
     return result
 
-nenn = year_converter_to_wareki(date_objobj).split("年")[0]
+nenn = year_converter_to_wareki(_date_string).split("年")[0]
 
 x4 = input("法令名(ひらがな)?")
 starting_member[3] += x4
