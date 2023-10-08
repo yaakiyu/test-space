@@ -2,5 +2,6 @@
 # 競プロにつかえるもの
 
 INTIN = lambda: int(input())
-MAPIN = lambda: map(int, input().split())
-LISTIN = lambda: list(map(int, input().split()))
+def MAPIN(kansu=int):
+    return map(kansu, input().split())
+LISTIN = lambda k=int: list(MAPIN(k))
