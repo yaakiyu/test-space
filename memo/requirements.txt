@@ -2,7 +2,6 @@
 Django
 Flask
 MouseInfo
-MySQLer
 Pillow
 PyAutoGUI
 PyCaret
