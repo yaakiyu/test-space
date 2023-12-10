@@ -4,10 +4,14 @@ INTIN = lambda: int(input())
 def MAPIN(kansu=int):
     return map(kansu, input().split())
 LISTIN = lambda k=int: list(MAPIN(k))
+
+# コピペ用
+map(int, input().split())
+
 # sys関連
 import sys
-sys.setrecursionlimit(0)
-sys.set_int_max_str_digits(0)
+sys.setrecursionlimit(100000000)
+sys.set_int_max_str_digits(10000000)
 input = lambda: sys.stdin.readline()[:-1]
 # もしpypyなら
 #import pypyjit; pypyjit.set_param('max_unroll_recursion=-1')  # 再帰関数の展開をする
@@ -17,4 +21,5 @@ input = lambda: sys.stdin.readline()[:-1]
 #from collections import Counter # Counter
 #import heapq # Priority Queue 使い方：q=[...] ; heapq.heapify(q) ; heapq.heappush(q, item) ; heapq.heappop(q, item)
 #from itertools import accumulate # 累積和
+#from bisect import bisect_left, bisect_right # 二分探索
 #from decimal import Decimal, getcontext; getcontext().prec = 100 # 正確な少数
