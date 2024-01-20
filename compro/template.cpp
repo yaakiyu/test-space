@@ -47,12 +47,12 @@ template<typename T> inline T sum(vector<T>&a){T ret{};for(auto&i:a)ret+=i;retur
 
 
 void setup() {
-  cin.tie(0);  // 入力高速化
-  ios::sync_with_stdio(false); // 入力高速化
-  cout<<fixed<<setprecision(30); // 小数点精度を30桁にする
+    cin.tie(0);  // 入力高速化
+    ios::sync_with_stdio(false); // 入力高速化
+    cout<<fixed<<setprecision(30); // 小数点精度を30桁にする
 }
 
 
 int main() {
-  setup();
+    setup();
 }
