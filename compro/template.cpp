@@ -52,6 +52,7 @@ void setup() {
     cout<<fixed<<setprecision(30); // 小数点精度を30桁にする
     // 以下、大量のメモ
     // cout<<__builtin_popcount(n)<<endl; // 立っているビットの数を数える
+    // str.find("aaa") // aaaの含まれる位置を返す、見つからなかったらstring::nposが返る
 }
 
 
