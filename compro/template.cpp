@@ -53,6 +53,7 @@ void setup() {
     // 以下、大量のメモ
     // cout<<__builtin_popcount(n)<<endl; // 立っているビットの数を数える
     // str.find("aaa") // aaaの含まれる位置を返す、見つからなかったらstring::nposが返る
+    // https://atcoder.jp/contests/abc145/submissions/49851155 <- 二項係数mod
 }
 
 
