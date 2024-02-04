@@ -1,12 +1,5 @@
 # competetive programming
 # 競プロにつかえるもの
-INTIN = lambda: int(input())
-def MAPIN(kansu=int):
-    return map(kansu, input().split())
-LISTIN = lambda k=int: list(MAPIN(k))
-
-# コピペ用
-map(int, input().split())
 
 # sys関連
 import sys
@@ -23,3 +16,11 @@ input = lambda: sys.stdin.readline()[:-1]
 #from itertools import accumulate # 累積和
 #from bisect import bisect_left, bisect_right # 二分探索
 #from decimal import Decimal, getcontext; getcontext().prec = 100 # 正確な少数
+
+INTIN = lambda: int(input())
+def MAPIN(kansu=int):
+    return map(kansu, input().split())
+LISTIN = lambda k=int: list(MAPIN(k))
+
+
+
