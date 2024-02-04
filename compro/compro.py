@@ -4,7 +4,10 @@
 # sys関連
 import sys
 sys.setrecursionlimit(100000000)
-sys.set_int_max_str_digits(10000000)
+if sys.version_info.minor >= 11:
+    # python3.11以上でのみ4300桁制限がかかる
+    sys.set_int_max_str_digits(10000000)
+
 input = lambda: sys.stdin.readline()[:-1]
 # もしpypyなら
 #import pypyjit; pypyjit.set_param('max_unroll_recursion=-1')  # 再帰関数の展開をする
@@ -21,6 +24,3 @@ INTIN = lambda: int(input())
 def MAPIN(kansu=int):
     return map(kansu, input().split())
 LISTIN = lambda k=int: list(MAPIN(k))
-
-
-
