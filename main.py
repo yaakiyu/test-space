@@ -9,7 +9,7 @@ input = lambda: sys.stdin.readline()[:-1]
 #from stcoder.scc import SCCGraph # SCC 使い方：g=SCCGraph(頂点数) ; g.add_edge(u, v) ; scc=g.scc()
 #from collections import deque  # Queue 使い方：q=deque(lis) ; q.popleft(item) ; q.append(item)
 #from collections import Counter # Counter
-import heapq # Priority Queue 使い方：q=[...] ; heapq.heapify(q) ; heapq.heappush(q, item) ; heapq.heappop(q, item)
+#import heapq # Priority Queue 使い方：q=[...] ; heapq.heapify(q) ; heapq.heappush(q, item) ; heapq.heappop(q, item)
 #from itertools import accumulate # 累積和
 #from bisect import bisect_left, bisect_right
 #from decimal import Decimal, getcontext; getcontext().prec = 100 # 正確な少数
